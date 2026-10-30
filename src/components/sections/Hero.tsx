@@ -63,19 +63,47 @@ export default function Hero() {
       try {
         const data = await sanityClient.fetch<HeroData | null>(HERO_QUERY);
 
-        if (mounted) setHero(data);
+        if (mounted) {
+          setHero(data);
+          setError(false);
+        }
       } catch (err) {
         console.error("Sanity Hero error:", err);
-        if (mounted) setError(true);
+
+        if (mounted) {
+          setError(true);
+        }
       } finally {
-        if (mounted) setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
     }
 
-    fetchHero();
+    // Fetch when the component is first mounted.
+    void fetchHero();
+
+    // Check for newly published content every 30 seconds.
+    const interval = window.setInterval(() => {
+      if (!document.hidden) {
+        void fetchHero();
+      }
+    }, 30_000);
+
+    // Refresh when the visitor returns to this tab.
+    const onVisibilityChange = () => {
+      if (!document.hidden) {
+        void fetchHero();
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
 
     return () => {
       mounted = false;
+      window.clearInterval(interval);
+
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 
