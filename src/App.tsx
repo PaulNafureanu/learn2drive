@@ -5,7 +5,7 @@ function App() {
         <span className="text-5xl">🚗</span>
 
         <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
-          Learn<span className="text-lime-400">2</span>Drive
+          Learn<span className="text-lime-400">2</span>Drive - Preview
         </h1>
 
         <div className="space-y-2">
