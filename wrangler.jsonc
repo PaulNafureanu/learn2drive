@@ -4,6 +4,10 @@
   "compatibility_date": "2026-11-06",
   "main": "./worker/index.ts",
 
+  "secrets": {
+    "required": ["TURNSTILE_SECRET_KEY"],
+  },
+
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

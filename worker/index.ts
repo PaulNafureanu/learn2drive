@@ -126,6 +126,11 @@ async function verifyTurnstile(token: string, env: Env): Promise<boolean> {
 }
 
 async function handleContact(request: Request, env: Env): Promise<Response> {
+  console.info("Contact API diagnostics", {
+    hasTurnstileSecret: Boolean(env.TURNSTILE_SECRET_KEY),
+    hasEmailBinding: Boolean(env.EMAIL),
+  });
+
   const contentType = request.headers.get("content-type") ?? "";
 
   if (!contentType.includes("multipart/form-data") && !contentType.includes("application/x-www-form-urlencoded")) {
