@@ -4,7 +4,7 @@ export const siteSettingsType = defineType({
   name: 'siteSettings',
   title: 'Setări generale',
   type: 'document',
-  description: 'Personalizează identitatea școlii, meniul și butonul principal.',
+  description: 'Personalizează identitatea școlii și setările SEO ale site-ului.',
 
   fields: [
     defineField({

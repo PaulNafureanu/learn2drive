@@ -1,18 +1,12 @@
 import SeoSettings from "./SeoSettings";
 import Hero from "../components/sections/Hero";
 import NavBar from "../components/sections/navbar/NavBar";
+
 import { useSanityQuery } from "../hooks/useSanityQuery";
+
 import { SITE_SETTINGS_LISTEN_QUERY, SITE_SETTINGS_QUERY } from "./queries";
 
-type SiteSettingsData = {
-  schoolName: string;
-  logo?: {
-    alt?: string;
-    asset?: {
-      url: string;
-    };
-  };
-};
+import type { SiteSettingsData } from "./types";
 
 export default function Website() {
   const { data } = useSanityQuery<SiteSettingsData>({
@@ -29,8 +23,10 @@ export default function Website() {
 
   return (
     <div className="min-h-screen bg-[#F5F5F3] text-[#171717]">
-      <SeoSettings />
+      <SeoSettings seo={data?.seo} />
+
       <NavBar logo={logo} />
+
       <main>
         <Hero />
       </main>

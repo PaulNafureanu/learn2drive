@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import { useSanityQuery } from "../hooks/useSanityQuery";
-import { SEO_QUERY, SEO_LISTEN_QUERY } from "./queries";
+import type { SeoData } from "./types";
 
-type SeoData = {
-  title?: string | null;
-  description?: string | null;
-  socialImageUrl?: string | null;
+type Props = {
+  seo?: SeoData | null;
 };
 
 const DEFAULT_SEO = {
@@ -23,20 +20,13 @@ function updateMeta(selector: string, content: string) {
   }
 }
 
-export default function SeoSettings() {
-  const { data } = useSanityQuery<SeoData>({
-    loadingQuery: SEO_QUERY,
-    listeningQuery: SEO_LISTEN_QUERY,
-    loadingErrorMsg: "Failed to load SEO settings",
-    listeningErrorMsg: "SEO listener failed",
-  });
-
+export default function SeoSettings({ seo }: Props) {
   useEffect(() => {
-    const title = data?.title?.trim() || DEFAULT_SEO.title;
+    const title = seo?.title?.trim() || DEFAULT_SEO.title;
 
-    const description = data?.description?.trim() || DEFAULT_SEO.description;
+    const description = seo?.description?.trim() || DEFAULT_SEO.description;
 
-    const image = data?.socialImageUrl || DEFAULT_SEO.socialImageUrl;
+    const socialImageUrl = seo?.socialImageUrl?.trim() || DEFAULT_SEO.socialImageUrl;
 
     // Browser title
     document.title = title;
@@ -47,13 +37,13 @@ export default function SeoSettings() {
     // Open Graph
     updateMeta('meta[property="og:title"]', title);
     updateMeta('meta[property="og:description"]', description);
-    updateMeta('meta[property="og:image"]', image);
+    updateMeta('meta[property="og:image"]', socialImageUrl);
 
     // Twitter / X
     updateMeta('meta[name="twitter:title"]', title);
     updateMeta('meta[name="twitter:description"]', description);
-    updateMeta('meta[name="twitter:image"]', image);
-  }, [data]);
+    updateMeta('meta[name="twitter:image"]', socialImageUrl);
+  }, [seo]);
 
   return null;
 }

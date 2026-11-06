@@ -6,22 +6,15 @@ export const SITE_SETTINGS_QUERY = `
       asset->{
         url
       }
+    },
+    seo {
+      title,
+      description,
+      "socialImageUrl": socialImage.asset->url
     }
   }
 `;
 
 export const SITE_SETTINGS_LISTEN_QUERY = `
-  *[_id == "siteSettings"]
-`;
-
-export const SEO_QUERY = `
-  *[_id == "siteSettings"][0]{
-    "title": seo.title,
-    "description": seo.description,
-    "socialImageUrl": seo.socialImage.asset->url
-  }
-`;
-
-export const SEO_LISTEN_QUERY = `
   *[_id == "siteSettings"]
 `;
