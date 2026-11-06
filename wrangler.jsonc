@@ -8,6 +8,8 @@
     "required": ["TURNSTILE_SECRET_KEY"],
   },
 
+  "vars": {},
+
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
