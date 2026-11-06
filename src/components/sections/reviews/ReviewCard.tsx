@@ -6,6 +6,8 @@ type Props = {
 };
 
 export default function ReviewCard({ review }: Props) {
+  const rating = review.rating ?? 5;
+
   return (
     <article className="flex h-full flex-col rounded-[24px] border border-neutral-200 bg-white p-6 shadow-sm sm:p-8">
       {review.rating != null && (
@@ -15,7 +17,7 @@ export default function ReviewCard({ review }: Props) {
               key={index}
               size={18}
               aria-hidden="true"
-              className={index < review.rating ? "fill-current" : "text-neutral-200"}
+              className={index < rating ? "fill-current" : "text-neutral-200"}
             />
           ))}
         </div>

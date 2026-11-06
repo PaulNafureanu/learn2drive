@@ -10,7 +10,7 @@ export const siteSettingsType = defineType({
     {name: 'identity', title: 'Identitate', default: true},
     {name: 'contact', title: 'Contact'},
     {name: 'social', title: 'Social Media'},
-    {name: 'location', title: 'Locație'},
+    {name: 'location', title: 'Locație & Program'},
     {name: 'seo', title: 'SEO & Google'},
   ],
 
