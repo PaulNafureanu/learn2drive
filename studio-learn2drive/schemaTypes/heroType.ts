@@ -1,27 +1,27 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const heroType = defineType({
   name: 'hero',
   title: 'Secțiunea principală',
   type: 'document',
-
-  description: 'Gestionează prima secțiune afișată pe pagina principală a site-ului.',
+  description: 'Personalizează prima secțiune a paginii principale.',
 
   fields: [
     defineField({
       name: 'title',
       title: 'Titlul principal',
       type: 'string',
-      description:
-        'Introdu prima parte a titlului mare afișat pe pagina principală. Exemplu: „Învață să conduci cu”.',
-      validation: (Rule) => Rule.required().error('Titlul principal este obligatoriu.'),
+      description: 'Prima parte a titlului.',
+      initialValue: 'Învață să conduci cu',
+      validation: (Rule) => Rule.required(),
     }),
 
     defineField({
       name: 'highlight',
-      title: 'Textul evidențiat',
+      title: 'Text evidențiat',
       type: 'string',
-      description: 'Această parte a titlului va fi evidențiată cu albastru. Exemplu: „încredere.”',
+      description: 'Textul afișat în albastru după titlul principal.',
+      initialValue: 'încredere.',
     }),
 
     defineField({
@@ -29,48 +29,55 @@ export const heroType = defineType({
       title: 'Descrierea secțiunii',
       type: 'text',
       rows: 3,
-      description:
-        'Scrie un mesaj scurt despre școala de șoferi, care va apărea sub titlul principal.',
+      validation: (Rule) => Rule.max(300),
     }),
 
     defineField({
-      name: 'image',
-      title: 'Imaginea principală',
-      type: 'image',
-      description:
-        'Încarcă o fotografie reprezentativă pentru școala de șoferi. Recomandăm o imagine clară, de calitate bună, cu mașina școlii.',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Descrierea imaginii (accesibilitate)',
-          type: 'string',
-          description:
-            'Descrie pe scurt ce apare în fotografie. Exemplu: „Mașină de școală de șoferi pe un drum din Onești”.',
+      name: 'images',
+      title: 'Imagini slideshow',
+      type: 'array',
+      description: 'Adaugă și reordonează fotografiile din slideshow.',
+
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Descrierea imaginii',
+              type: 'string',
+              description: 'Descrie fotografia pentru accesibilitate.',
+            }),
+          ],
         }),
       ],
+
+      validation: (Rule) => Rule.max(8),
     }),
 
     defineField({
       name: 'primaryButton',
       title: 'Butonul principal',
       type: 'object',
-      description: 'Configurează butonul albastru care îndeamnă vizitatorii să se înscrie.',
+      validation: (Rule) => Rule.required(),
+
       fields: [
         defineField({
           name: 'label',
           title: 'Textul butonului',
           type: 'string',
-          description: 'Exemplu: „Înscrie-te acum”.',
+          initialValue: 'Înscrie-te acum',
+          validation: (Rule) => Rule.required(),
         }),
+
         defineField({
           name: 'href',
-          title: 'Destinația butonului',
+          title: 'Destinație',
           type: 'string',
-          description:
-            'Introdu adresa paginii sau a secțiunii către care duce butonul. Exemplu: #contact.',
+          initialValue: '#contact',
+          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
@@ -79,20 +86,23 @@ export const heroType = defineType({
       name: 'secondaryButton',
       title: 'Butonul secundar',
       type: 'object',
-      description: 'Configurează al doilea buton, folosit pentru a prezenta cursurile disponibile.',
+      validation: (Rule) => Rule.required(),
+
       fields: [
         defineField({
           name: 'label',
           title: 'Textul butonului',
           type: 'string',
-          description: 'Exemplu: „Descoperă cursurile”.',
+          initialValue: 'Descoperă cursurile',
+          validation: (Rule) => Rule.required(),
         }),
+
         defineField({
           name: 'href',
-          title: 'Destinația butonului',
+          title: 'Destinație',
           type: 'string',
-          description:
-            'Introdu adresa paginii sau a secțiunii către care duce butonul. Exemplu: #cursuri.',
+          initialValue: '#cursuri',
+          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
@@ -101,15 +111,7 @@ export const heroType = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'description',
-      media: 'image',
-    },
-    prepare({title, subtitle, media}) {
-      return {
-        title: title || 'Secțiunea principală',
-        subtitle: subtitle || 'Conținutul primei secțiuni a site-ului',
-        media,
-      }
+      media: 'images.0',
     },
   },
 })

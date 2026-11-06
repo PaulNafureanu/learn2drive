@@ -29,6 +29,12 @@ export default defineConfig({
         documentId: 'navBar',
         title: 'Meniu de navigare',
       }),
+
+      defineSingleton({
+        schemaType: 'hero',
+        documentId: 'hero',
+        title: 'Secțiunea principală',
+      }),
     ],
   },
 })

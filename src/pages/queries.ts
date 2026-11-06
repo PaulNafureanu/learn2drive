@@ -1,12 +1,49 @@
 export const SITE_SETTINGS_QUERY = `
   *[_id == "siteSettings"][0]{
     schoolName,
+    shortDescription,
+
     logo {
       alt,
       asset->{
         url
       }
     },
+
+    phone,
+    whatsapp,
+    email,
+
+    socialLinks[]{
+      _key,
+      platform,
+      label,
+      url
+    },
+
+    address {
+      street,
+      city,
+      county,
+      postalCode,
+      country
+    },
+
+    coordinates {
+      lat,
+      lng
+    },
+
+    googleMapsUrl,
+
+    openingHours[]{
+      _key,
+      day,
+      closed,
+      opens,
+      closes
+    },
+
     seo {
       title,
       description,

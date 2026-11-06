@@ -1,5 +1,5 @@
 import SeoSettings from "./SeoSettings";
-import Hero from "../components/sections/Hero";
+import Hero from "../components/sections/hero/Hero";
 import NavBar from "../components/sections/navbar/NavBar";
 
 import { useSanityQuery } from "../hooks/useSanityQuery";
