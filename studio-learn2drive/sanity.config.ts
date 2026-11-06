@@ -47,6 +47,18 @@ export default defineConfig({
         documentId: 'reviews',
         title: 'Recenzii și testimoniale',
       }),
+
+      defineSingleton({
+        schemaType: 'about',
+        documentId: 'about',
+        title: 'Despre noi',
+      }),
+
+      defineSingleton({
+        schemaType: 'courseGuide',
+        documentId: 'courseGuide',
+        title: 'Categorii și cerințe',
+      }),
     ],
   },
 })

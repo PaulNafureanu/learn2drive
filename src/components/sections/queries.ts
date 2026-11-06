@@ -80,3 +80,54 @@ export const REVIEWS_QUERY = `
 export const REVIEWS_LISTEN_QUERY = `
   *[_id == "reviews"]
 `;
+
+export const ABOUT_QUERY = `
+  *[_id == "about"][0]{
+    title,
+    highlight,
+    description,
+    roadmapTitle,
+    steps[]{
+      _key,
+      title,
+      description,
+      icon
+    }
+  }
+`;
+
+export const ABOUT_LISTEN_QUERY = `
+  *[_id == "about"]
+`;
+
+export const COURSE_GUIDE_QUERY = `
+  *[_id == "courseGuide"][0]{
+    title,
+    description,
+    courses[]{
+      _key,
+      category,
+      description,
+      minimumAge,
+      exam,
+      note,
+      plans[]{
+        _key,
+        label,
+        theoryHours,
+        practiceHours,
+        minimumKm,
+        minimumWeeks
+      }
+    },
+    documents[]{
+      _key,
+      title,
+      description
+    }
+  }
+`;
+
+export const COURSE_GUIDE_LISTEN_QUERY = `
+  *[_id == "courseGuide"]
+`;

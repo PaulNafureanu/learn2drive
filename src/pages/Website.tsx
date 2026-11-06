@@ -11,6 +11,8 @@ import { SITE_SETTINGS_LISTEN_QUERY, SITE_SETTINGS_QUERY } from "./queries";
 import Faq from "../components/sections/faq/faq";
 import Reviews from "../components/sections/reviews/Reviews";
 import type { SiteSettingsData } from "./types";
+import About from "../components/sections/about/About";
+import Courses from "../components/sections/courses/Courses";
 
 export default function Website() {
   const { data } = useSanityQuery<SiteSettingsData>({
@@ -33,8 +35,10 @@ export default function Website() {
 
       <main>
         <Hero />
-        <Reviews mapsUrl={data?.googleMapsUrl} reviewUrl={data?.googleReviewUrl} />
+        <About />
+        <Courses />
         <Faq />
+        <Reviews mapsUrl={data?.googleMapsUrl} reviewUrl={data?.googleReviewUrl} />
         <ContactSection settings={data} />
       </main>
 

@@ -28,7 +28,7 @@ export default function Reviews({ mapsUrl, reviewUrl }: Props) {
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((item) => (
-            <div key={item} className="h-60 animate-pulse rounded-3xl bg-neutral-200" />
+            <div key={item} className="h-60 animate-pulse rounded-1xl bg-neutral-200" />
           ))}
         </div>
       </section>
@@ -40,7 +40,7 @@ export default function Reviews({ mapsUrl, reviewUrl }: Props) {
   }
 
   return (
-    <section id="recenzii" aria-labelledby="reviews-title" className="mx-auto w-[90%] py-16 sm:py-20 lg:py-24">
+    <section id="recenzii" aria-labelledby="reviews-title" className="mx-auto max-w-[90%] py-16 sm:py-20 lg:py-24">
       {/* CENTERED HEADING */}
       <div className="mx-auto mb-12 max-w-2xl text-center">
         <h2 id="reviews-title" className="text-4xl font-extrabold tracking-tight text-[#171717] sm:text-5xl">

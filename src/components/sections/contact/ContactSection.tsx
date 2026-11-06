@@ -29,7 +29,7 @@ export default function ContactSection({ settings }: Props) {
         </h2>
 
         <p className="mt-4 text-base leading-relaxed text-neutral-600 sm:text-lg">
-          Ai întrebări despre cursuri sau înscriere? Suntem aici să te ajutăm.
+          Ai întrebări sau vrei să te înscriere? Suntem aici să te ajutăm.
         </p>
       </div>
 
