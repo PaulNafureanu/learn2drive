@@ -50,8 +50,8 @@ export type SiteSettingsData = {
   socialLinks?: SocialLink[];
 
   address?: Address;
-  coordinates?: Coordinates;
   googleMapsUrl?: string;
+  googleMapsEmbedUrl?: string | null;
 
   openingHours?: OpeningHours[];
 

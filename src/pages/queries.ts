@@ -29,12 +29,8 @@ export const SITE_SETTINGS_QUERY = `
       country
     },
 
-    coordinates {
-      lat,
-      lng
-    },
-
     googleMapsUrl,
+    googleMapsEmbedUrl,
 
     openingHours[]{
       _key,

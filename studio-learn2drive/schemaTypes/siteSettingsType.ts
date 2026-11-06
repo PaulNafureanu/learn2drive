@@ -201,20 +201,36 @@ export const siteSettingsType = defineType({
     }),
 
     defineField({
-      name: 'coordinates',
-      title: 'Coordonate GPS',
-      type: 'geopoint',
-      group: 'location',
-      description: 'Latitudinea și longitudinea exactă a școlii, pentru afișarea pinului pe hartă.',
-    }),
-
-    defineField({
       name: 'googleMapsUrl',
       title: 'Link Google Maps',
       type: 'url',
       group: 'location',
       description: 'Opțional. Linkul de distribuire către locația școlii din Google Maps.',
       validation: (Rule) => Rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
+      name: 'googleMapsEmbedUrl',
+      title: 'Google Maps - Hartă încorporată',
+      type: 'url',
+      group: 'location',
+      description:
+        'Deschide locația școlii în Google Maps → Distribuie → Încorporează o hartă. Copiază doar URL-ul din atributul src al iframe-ului.',
+      validation: (Rule) =>
+        Rule.uri({scheme: ['https']}).custom((url) => {
+          if (!url) return true
+
+          try {
+            const parsed = new URL(url)
+
+            return (
+              (parsed.hostname === 'www.google.com' && parsed.pathname.startsWith('/maps/embed')) ||
+              'Introdu un link de încorporare Google Maps valid.'
+            )
+          } catch {
+            return 'URL invalid.'
+          }
+        }),
     }),
 
     defineField({
@@ -237,13 +253,13 @@ export const siteSettingsType = defineType({
               type: 'string',
               options: {
                 list: [
-                  {title: 'Luni', value: 'monday'},
-                  {title: 'Marți', value: 'tuesday'},
-                  {title: 'Miercuri', value: 'wednesday'},
-                  {title: 'Joi', value: 'thursday'},
-                  {title: 'Vineri', value: 'friday'},
-                  {title: 'Sâmbătă', value: 'saturday'},
-                  {title: 'Duminică', value: 'sunday'},
+                  {title: 'Luni', value: 'Luni'},
+                  {title: 'Marți', value: 'Marți'},
+                  {title: 'Miercuri', value: 'Miercuri'},
+                  {title: 'Joi', value: 'Joi'},
+                  {title: 'Vineri', value: 'Vineri'},
+                  {title: 'Sâmbătă', value: 'Sâmbătă'},
+                  {title: 'Duminică', value: 'Duminică'},
                 ],
               },
               validation: (Rule) => Rule.required(),
