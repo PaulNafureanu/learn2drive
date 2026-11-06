@@ -210,6 +210,15 @@ export const siteSettingsType = defineType({
     }),
 
     defineField({
+      name: 'googleReviewUrl',
+      title: 'Link pentru recenzii Google',
+      type: 'url',
+      group: 'location',
+      description: 'Linkul direct prin care vizitatorii pot lăsa o recenzie pe Google Maps.',
+      validation: (Rule) => Rule.uri({scheme: ['https']}),
+    }),
+
+    defineField({
       name: 'googleMapsEmbedUrl',
       title: 'Google Maps - Hartă încorporată',
       type: 'url',

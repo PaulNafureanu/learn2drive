@@ -21,10 +21,10 @@ export default function ContactSection({ settings }: Props) {
     (addressText ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressText)}` : null);
 
   return (
-    <section id="contact" className="mx-auto w-[90%] py-16 sm:py-20 lg:py-24">
-      {/* Heading */}
-      <div className="mb-10 max-w-2xl">
-        <h2 className="text-4xl font-extrabold tracking-tight text-[#171717] sm:text-5xl">
+    <section id="contact" aria-labelledby="contact-title" className="mx-auto w-[90%] py-16 sm:py-20 lg:py-24">
+      {/* CENTERED HEADING */}
+      <div className="mx-auto mb-12 max-w-2xl text-center">
+        <h2 id="contact-title" className="text-4xl font-extrabold tracking-tight text-[#171717] sm:text-5xl">
           Hai să <span className="text-blue-600">vorbim!</span>
         </h2>
 

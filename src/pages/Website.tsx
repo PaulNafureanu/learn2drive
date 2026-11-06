@@ -1,13 +1,15 @@
-import SeoSettings from "./SeoSettings";
-import Hero from "../components/sections/hero/Hero";
-import NavBar from "../components/sections/navbar/NavBar";
 import ContactSection from "../components/sections/contact/ContactSection";
 import Footer from "../components/sections/footer/Footer";
+import Hero from "../components/sections/hero/Hero";
+import NavBar from "../components/sections/navbar/NavBar";
+import SeoSettings from "./SeoSettings";
 
 import { useSanityQuery } from "../hooks/useSanityQuery";
 
-import { SITE_SETTINGS_QUERY, SITE_SETTINGS_LISTEN_QUERY } from "./queries";
+import { SITE_SETTINGS_LISTEN_QUERY, SITE_SETTINGS_QUERY } from "./queries";
 
+import Faq from "../components/sections/faq/faq";
+import Reviews from "../components/sections/reviews/Reviews";
 import type { SiteSettingsData } from "./types";
 
 export default function Website() {
@@ -31,6 +33,8 @@ export default function Website() {
 
       <main>
         <Hero />
+        <Reviews mapsUrl={data?.googleMapsUrl} reviewUrl={data?.googleReviewUrl} />
+        <Faq />
         <ContactSection settings={data} />
       </main>
 

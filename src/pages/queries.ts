@@ -30,6 +30,7 @@ export const SITE_SETTINGS_QUERY = `
     },
 
     googleMapsUrl,
+    googleReviewUrl,
     googleMapsEmbedUrl,
 
     openingHours[]{

@@ -35,6 +35,18 @@ export default defineConfig({
         documentId: 'hero',
         title: 'Secțiunea principală',
       }),
+
+      defineSingleton({
+        schemaType: 'faq',
+        documentId: 'faq',
+        title: 'Întrebări frecvente',
+      }),
+
+      defineSingleton({
+        schemaType: 'reviews',
+        documentId: 'reviews',
+        title: 'Recenzii și testimoniale',
+      }),
     ],
   },
 })

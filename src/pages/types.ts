@@ -51,6 +51,7 @@ export type SiteSettingsData = {
 
   address?: Address;
   googleMapsUrl?: string;
+  googleReviewUrl?: string | null;
   googleMapsEmbedUrl?: string | null;
 
   openingHours?: OpeningHours[];

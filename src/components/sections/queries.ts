@@ -46,3 +46,37 @@ export const HERO_QUERY = `
 export const HERO_LISTEN_QUERY = `
   *[_id == "hero"]
 `;
+
+export const FAQ_QUERY = `
+  *[_id == "faq"][0]{
+    title,
+    description,
+    questions[]{
+      _key,
+      question,
+      answer
+    }
+  }
+`;
+
+export const FAQ_LISTEN_QUERY = `
+  *[_id == "faq"]
+`;
+
+export const REVIEWS_QUERY = `
+  *[_id == "reviews"][0]{
+    title,
+    description,
+    testimonials[]{
+      _key,
+      author,
+      rating,
+      text,
+      date
+    }
+  }
+`;
+
+export const REVIEWS_LISTEN_QUERY = `
+  *[_id == "reviews"]
+`;
