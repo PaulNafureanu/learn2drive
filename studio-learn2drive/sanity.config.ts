@@ -23,6 +23,12 @@ export default defineConfig({
         documentId: 'siteSettings',
         title: 'Setări generale',
       }),
+
+      defineSingleton({
+        schemaType: 'navBar',
+        documentId: 'navBar',
+        title: 'Meniu de navigare',
+      }),
     ],
   },
 })

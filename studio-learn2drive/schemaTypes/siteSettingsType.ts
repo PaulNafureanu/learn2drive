@@ -1,4 +1,4 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export const siteSettingsType = defineType({
   name: 'siteSettings',
@@ -20,75 +20,40 @@ export const siteSettingsType = defineType({
       title: 'Logo-ul școlii',
       type: 'image',
       description:
-        'Opțional. Încarcă o variantă a logo-ului potrivită pentru bara de navigare. Dacă nu încarci nimic, va apărea numele școlii.',
+        'Opțional. Încarcă o variantă a logo-ului. Dacă nu încarci nimic, va apărea numele școlii.',
       options: {hotspot: true},
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Descrierea logo-ului',
-          type: 'string',
-        }),
-      ],
     }),
 
     defineField({
-      name: 'navigation',
-      title: 'Meniul de navigare',
-      type: 'array',
-      description: 'Adaugă, elimină sau reordonează linkurile din meniul site-ului.',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'navigationItem',
-          title: 'Link de navigare',
-          fields: [
-            defineField({
-              name: 'label',
-              title: 'Text afișat',
-              type: 'string',
-              validation: (Rule) => Rule.required(),
-            }),
-            defineField({
-              name: 'href',
-              title: 'Destinație',
-              type: 'string',
-              description: 'Exemplu: #acasa, #cursuri, #despre sau #contact.',
-              validation: (Rule) => Rule.required(),
-            }),
-          ],
-          preview: {
-            select: {
-              title: 'label',
-              subtitle: 'href',
-            },
-          },
-        }),
-      ],
-      initialValue: [
-        {_type: 'navigationItem', _key: 'home', label: 'Acasă', href: '#acasa'},
-        {_type: 'navigationItem', _key: 'courses', label: 'Cursuri', href: '#cursuri'},
-        {_type: 'navigationItem', _key: 'about', label: 'Despre noi', href: '#despre'},
-        {_type: 'navigationItem', _key: 'contact', label: 'Contact', href: '#contact'},
-      ],
-    }),
-
-    defineField({
-      name: 'headerButton',
-      title: 'Butonul din meniu',
+      name: 'seo',
+      title: 'SEO & Google',
       type: 'object',
-      description: 'Butonul evidențiat în partea dreaptă a meniului.',
+      description: 'Personalizează modul în care site-ul apare în Google și pe rețelele sociale.',
+
       fields: [
         defineField({
-          name: 'label',
-          title: 'Textul butonului',
+          name: 'title',
+          title: 'Titlul paginii',
           type: 'string',
-          initialValue: 'Înscrie-te acum',
+          description: 'Titlul afișat în rezultatele Google și în fila browserului.',
+          validation: (Rule) => Rule.max(65),
         }),
+
         defineField({
-          name: 'href',
-          title: 'Destinația butonului',
-          type: 'string',
-          initialValue: '#contact',
+          name: 'description',
+          title: 'Descriere Google',
+          type: 'text',
+          rows: 3,
+          description: 'Descrierea paginii în rezultatele motoarelor de căutare.',
+          validation: (Rule) => Rule.max(160),
+        }),
+
+        defineField({
+          name: 'socialImage',
+          title: 'Imagine pentru distribuire',
+          type: 'image',
+          description: 'Imaginea folosită la distribuirea site-ului pe Facebook, WhatsApp etc.',
+          options: {hotspot: true},
         }),
       ],
     }),
