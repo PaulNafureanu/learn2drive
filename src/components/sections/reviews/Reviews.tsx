@@ -28,7 +28,7 @@ export default function Reviews({ mapsUrl, reviewUrl }: Props) {
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {[1, 2, 3].map((item) => (
-            <div key={item} className="h-60 animate-pulse rounded-[24px] bg-neutral-200" />
+            <div key={item} className="h-60 animate-pulse rounded-3xl bg-neutral-200" />
           ))}
         </div>
       </section>
