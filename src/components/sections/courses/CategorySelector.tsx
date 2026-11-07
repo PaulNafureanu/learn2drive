@@ -43,7 +43,7 @@ function Metric({ icon: Icon, label, value }: MetricProps) {
 
       <p className="text-xs leading-relaxed text-neutral-500">{label}</p>
 
-      <p className="mt-2 break-words text-lg font-bold leading-snug text-[#171717] sm:text-xl">{value}</p>
+      <p className="mt-2 wrap-break-word text-lg font-bold leading-snug text-[#171717] sm:text-xl">{value}</p>
     </div>
   );
 }
